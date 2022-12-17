@@ -1,0 +1,99 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.LightWeight" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/gray_900</item> <!-- 포커스시 EditText 밑줄과 커서포인터(물방울) 색상 -->
+        <item name="colorPrimaryVariant">@android:color/transparent</item> <!-- 상태바 색상에 영향 -->
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <!--  colorSecondary는 edittext 커서포인트 색상에도 영향미치는듯 ->아닌듯? -->
+        <item name="colorSecondary">@color/light_blue_400</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Customize your theme here. -->
+        <!-- 상태바 설정 -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!--        <item name="android:windowLightStatusBar">true</item> 상태바 배경이 흰색일때 텍스트 및 아이콘이 보이게 해줌 -->
+
+        <!-- 앱 폰트 일괄 적용 -->
+        <item name="fontFamily">@font/noto_sans_kr_regular</item>
+        <item name="android:includeFontPadding">false</item>
+
+        <!-- EditText 텍스트 선택시 색상 및 포커스시 밑줄 색상, 포인터(물방울) 색상 -->
+        <item name="android:textColorHighlight">@color/gray_400</item>
+        <item name="android:colorControlActivated">@color/black</item>
+    </style>
+
+    <!-- item_routine 의 세트 추가/삭제 버튼 style -->
+    <style name="AddDeleteButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconTint">@color/black</item>
+        <item name="rippleColor">@color/gray_500</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!--  상세아이템의 Unit style  -->
+    <style name="DetailUnitStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">16dp</item>
+        <item name="fontFamily">@font/noto_sans_kr_light</item>
+    </style>
+
+    <!--  memo EditText style  -->
+    <style name="Memo.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxBackgroundColor">@color/gray_300</item>
+        <item name="boxStrokeColor">#c2c0ba</item>
+        <item name="boxStrokeErrorColor">#FF0000</item>
+        <item name="boxCornerRadiusTopStart">5dp</item>
+        <item name="boxCornerRadiusTopEnd">5dp</item>
+        <item name="boxCornerRadiusBottomStart">5dp</item>
+        <item name="boxCornerRadiusBottomEnd">5dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxCollapsedPaddingTop">0dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="errorIconDrawable">@null</item>
+        <item name="errorTextColor">#FF0000</item>
+        <item name="android:textColorHint">#B3B3B3</item>
+        <item name="materialThemeOverlay">@style/Memo.ThemeOverlay.TextInputEditText.OutlinedBox</item>
+    </style>
+
+    <style name="Memo.ThemeOverlay.TextInputEditText.OutlinedBox" parent="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="editTextStyle">@style/Memo.TextInputEditText.OutlinedBox</item>
+    </style>
+
+    <style name="Memo.TextInputEditText.OutlinedBox" parent="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">@color/gray_600</item>
+
+        <!--        <item name="android:textColorHint">@color/black</item>-->
+    </style>
+
+    <!-- KG, LB Toggle Button style -->
+    <style name="ToggleUnitStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="rippleColor">@color/black</item>
+        <item name="colorPrimary">@color/gray_800</item>
+    </style>
+
+    <!-- TODO: test_font 이름변경   -->
+    <style name="NormalFontStyle" parent="@android:style/Widget.DeviceDefault.TextView">
+        <item name="fontFamily">@font/app_font</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/calendarFragment">
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.lightweight.presentation.ui.calendar.CalendarFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_daily_workout_log" />
+
+    <fragment
+        android:id="@+id/dailyWorkoutLogFragment"
+        android:name="com.example.lightweight.presentation.ui.write.DailyWorkoutLogFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_dailyWorkoutLogFragment_to_addRoutineFragment"
+            app:destination="@id/addRoutineFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.example.lightweight.presentation.ui.notifications.NotificationsFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/addRoutineFragment"
+        android:name="com.example.lightweight.presentation.ui.write.AddRoutineFragment"
+        android:label="fragment_add_routine"
+        tools:layout="@layout/fragment_add_routine" >
+        <action
+            android:id="@+id/action_addRoutineFragment_to_workoutListTabFragment"
+            app:destination="@id/workoutListTabFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutListTabFragment"
+        android:name="com.example.lightweight.presentation.ui.write.WorkoutListTabFragment"
+        android:label="fragment_workout_list_tab"
+        tools:layout="@layout/fragment_workout_list_tab" >
+        <action
+            android:id="@+id/action_workoutListTabFragment_to_writeDetailFragment"
+            app:destination="@id/writeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/writeDetailFragment"
+        android:name="com.example.lightweight.presentation.ui.write.WriteDetailFragment"
+        android:label="fragment_write_detail"
+        tools:layout="@layout/fragment_write_detail" >
+        <argument
+            android:name="workout"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+</navigation>

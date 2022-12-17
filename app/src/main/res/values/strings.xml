@@ -1,0 +1,131 @@
+<resources>
+    <string name="app_name">LightWeight</string>
+    <string name="hint_memo">MEMO</string>
+    <string name="add_routine">추 가</string>
+    <string name="unit_kg">kg</string>
+    <string name="unit_lbs">lbs</string>
+    <string name="unit_reps">회</string>
+    <string name="add_set">세트 추가</string>
+    <string name="delete_set">세트 삭제</string>
+    <string name="expand_btn">세트 펼치기</string>
+
+    <!--    Workout List    -->
+    <string-array name="back_workout_list">
+        <item>루마니안 데드리프트</item>
+        <item>덤벨 풀 오버</item>
+        <item>랫 풀 다운</item>
+        <item>바벨 로우</item>
+        <item>비하인드 랫 풀 다운</item>
+        <item>와이드 풀다운</item>
+        <item>케이블 시티드 로우</item>
+        <item>스미스 바벨 로우</item>
+        <item>암 풀 다운</item>
+        <item>어시스트 풀업 머신</item>
+        <item>원 암 덤벨 로우</item>
+        <item>플레이트 시티드 로우</item>
+        <item>프론트 풀다운</item>
+        <item>T-바 로우</item>
+    </string-array>
+
+    <string-array name="chest_workout_list">
+        <item>벤치 프레스</item>
+        <item>스미스 벤치프레스</item>
+        <item>덤벨 프레스</item>
+        <item>덤벨 플라이</item>
+        <item>덤벨 풀 오버</item>
+        <item>딥스</item>
+        <item>스미스 인클라인 벤치프레스</item>
+        <item>스퀴즈 프레스</item>
+        <item>인클라인 덤벨 프레스</item>
+        <item>인클라인 덤벨 플라이</item>
+        <item>인클라인 벤치 프레스</item>
+        <item>어시스트 딥스 머신</item>
+        <item>플레이트 체스트 프레스</item>
+        <item>플레이트 인클라인 체스트 프레스</item>
+        <item>머신 체스트 프레스</item>
+        <item>플레이트 벤치 프레스</item>
+        <item>팩 덱 플라이</item>
+        <item>케이블 크로스 오버</item>
+        <item>하이 풀리 케이블 플라이</item>
+        <item>로우 풀리 케이블 플라이</item>
+        <item>푸쉬 업</item>
+    </string-array>
+
+    <string-array name="leg_workout_list">
+        <item>스쿼트</item>
+        <item>덤벨 와이드 스쿼트</item>
+        <item>덤벨 런지</item>
+        <item>레그 프레스</item>
+        <item>레그 익스텐션</item>
+        <item>레그 컬</item>
+        <item>스미스 런지</item>
+        <item>스티프 데드리프트</item>
+        <item>스플릿 스쿼트</item>
+        <item>핵 스쿼트</item>
+        <item>브이 스쿼트</item>
+        <item>이너 타이</item>
+        <item>아웃 타이</item>
+    </string-array>
+
+    <string-array name="shoulder_workout_list">
+        <item>밀리터리 프레스</item>
+        <item>덤벨 숄더 프레스</item>
+        <item>사이드 래터럴 레이즈</item>
+        <item>스미스 바벨숄더 프레스</item>
+        <item>벤트 오버 래터럴 레이즈</item>
+        <item>플레이트 숄더 프레스</item>
+        <item>오버 헤드 프레스</item>
+        <item>머신 숄더 프레스</item>
+        <item>머신 사이드 래터럴 레이즈</item>
+        <item>비하인드 넥프레스</item>
+        <item>케이블 프론트 레이즈</item>
+        <item>리버스 케이블 크로스 오버</item>
+        <item>리버스 팩 덱 플라이</item>
+        <item>프론트 레이즈</item>
+        <item>로우 풀리 페이스 풀</item>
+        <item>페이스 풀</item>
+        <item>y 레이즈</item>
+        <item>슈러그</item>
+    </string-array>
+
+    <string-array name="biceps_workout_list">
+        <item>바벨 컬</item>
+        <item>EZ-바 컬</item>
+        <item>덤벨 컬</item>
+        <item>인클라인 덤벨 컬</item>
+        <item>해머 컬</item>
+        <item>케이블 컬</item>
+        <item>케이블 해머 컬</item>
+        <item>프리쳐 컬</item>
+        <item>프리쳐 해머 컬</item>
+        <item>리버스 컬</item>
+        <item>리스트 컬</item>
+    </string-array>
+
+    <string-array name="triceps_workout_list">
+        <item>라잉 트라이셉스 익스텐션</item>
+        <item>케이블 프레스 다운</item>
+        <item>클로즈 그립 벤치프레스</item>
+        <item>오버헤드 트라이셉스 익스텐션</item>
+        <item>덤벨 오버헤드 트라이셉스 익스텐션</item>
+        <item>덤벨 라잉 트라이셉스 익스텐션</item>
+        <item>덤벨 킥백</item>
+        <item>케이블 킥백</item>
+        <item>케이블 트라이셉스 익스텐션</item>
+    </string-array>
+
+    <string-array name="abs_workout_list">
+        <item>레그 레이즈</item>
+        <item>행잉 레그 레이즈</item>
+        <item>크런치</item>
+        <item>바이시클 크런치</item>
+        <item>힐 터치 크런치</item>
+        <item>사이드 크런치</item>
+        <item>케이블 크런치</item>
+        <item>행잉 니 레이즈</item>
+    </string-array>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
