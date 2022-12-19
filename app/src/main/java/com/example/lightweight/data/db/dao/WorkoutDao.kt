@@ -1,6 +1,7 @@
 package com.example.lightweight.data.db.dao
 
 import androidx.room.*
+import com.example.lightweight.data.db.entity.DailyWorkout
 import com.example.lightweight.data.db.entity.WorkoutList
 import kotlinx.coroutines.flow.Flow
 
@@ -15,6 +16,9 @@ interface WorkoutDao {
 
     @Query("SELECT * From WorkoutList")
     fun getWorkoutList() : List<WorkoutList>
+
+    @Insert
+    suspend fun insertDailyLog(dailyWorkout: DailyWorkout)
 
 //    @Query("SELECT * FROM Workout")
 //    @Transaction

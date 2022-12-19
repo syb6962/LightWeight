@@ -36,7 +36,9 @@ class DailyWorkoutLogFragment : Fragment() {
         }
 
         binding.btn.setOnClickListener {
-            findNavController().navigate(R.id.action_dailyWorkoutLogFragment_to_addRoutineFragment)
+            findNavController().navigate(
+                R.id.action_dailyWorkoutLogFragment_to_workoutListTabFragment
+            )
         }
 
         return root

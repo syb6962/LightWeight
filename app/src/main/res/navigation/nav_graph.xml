@@ -17,8 +17,8 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_calendar" >
         <action
-            android:id="@+id/action_dailyWorkoutLogFragment_to_addRoutineFragment"
-            app:destination="@id/addRoutineFragment" />
+            android:id="@+id/action_dailyWorkoutLogFragment_to_workoutListTabFragment"
+            app:destination="@id/workoutListTabFragment" />
     </fragment>
 
     <fragment
@@ -54,5 +54,10 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_writeDetailFragment_to_addRoutineFragment"
+            app:destination="@id/addRoutineFragment"
+            app:popUpTo="@id/addRoutineFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

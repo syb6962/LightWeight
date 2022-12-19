@@ -1,9 +1,13 @@
 package com.example.lightweight.data.db.entity
 
-data class DailyWorkout(
-    val id : Int,
-    val data: String,
-    val bp : String,
-) {
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.example.lightweight.domain.BodyPart
 
-}
+@Entity
+data class DailyWorkout(
+    @PrimaryKey(autoGenerate = true)
+    val id : Int = 0,
+    val date: String,
+    val bodyPart: String, // bodyPart
+)

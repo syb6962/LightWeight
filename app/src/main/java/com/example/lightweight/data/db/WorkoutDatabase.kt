@@ -5,12 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.lightweight.data.db.dao.WorkoutDao
+import com.example.lightweight.data.db.entity.DailyWorkout
 import com.example.lightweight.data.db.entity.Workout
 import com.example.lightweight.data.db.entity.WorkoutSetInfo
 import com.example.lightweight.data.db.entity.WorkoutList
 
 @Database(
-    entities = [Workout::class, WorkoutSetInfo::class, WorkoutList::class],
+    entities = [Workout::class, WorkoutSetInfo::class, WorkoutList::class, DailyWorkout::class],
     version = 1
 )
 abstract class WorkoutDatabase : RoomDatabase() {
@@ -34,7 +35,6 @@ abstract class WorkoutDatabase : RoomDatabase() {
                     .build()
 
                 INSTANCE = instance // 싱글톤 객체니까 INSTANCE에 instance를 대입함으로써 다음에 non-null이 되게 위함인듯.
-                instance.openHelper.writableDatabase // TODO: 강제 열기, 근데 이게 맞는 방식인가.
                 // return instance
                 instance
             }

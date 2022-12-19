@@ -8,13 +8,21 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lightweight.R
-import com.example.lightweight.data.PageState
 
 /*****************************************************
  * 운동 리스트 탭의 viewpager의 page 내용을 구성하는 어댑터 *
  *****************************************************/
 class WorkoutListAdapter(val setVal : (String) -> Unit) : RecyclerView.Adapter<WorkoutListAdapter.ViewHolder>() {
     private var items = listOf<String>()
+    private lateinit var mListener : OnItemClickListener;
+
+    interface OnItemClickListener {
+        fun onItemClick(workout: String)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        mListener = listener
+    }
 
     fun addItems(items: List<String>?) {
         // == Collections.sort(items), 아이템 사전편찬순 정렬
@@ -42,6 +50,7 @@ class WorkoutListAdapter(val setVal : (String) -> Unit) : RecyclerView.Adapter<W
                 val workout = tv.text.toString()
 //                val page = PageState.AddRoutine()
 //                setVal(workout)
+                mListener.onItemClick(workout)
                 val action = WorkoutListTabFragmentDirections
                     .actionWorkoutListTabFragmentToWriteDetailFragment(workout)
                 view.findNavController().navigate(action)

@@ -1,5 +1,7 @@
 package com.example.lightweight.presentation.viewmodel
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,15 +13,22 @@ import kotlinx.coroutines.launch
 
 class WorkoutListViewModel(
     private val repository: WorkoutListRepository
-) : ViewModel() {
 
+) : ViewModel() {
     private var _list = MutableLiveData<List<String>>()
     val list: LiveData<List<String>>
         get() = _list
 
-    fun getList(part: BodyPart) {
+    fun getWorkoutList(part: BodyPart) {
         viewModelScope.launch(Dispatchers.IO) {
             _list.postValue(repository.getWorkoutList(part))
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun createDailyLog(part: BodyPart) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.createDailyLog(part)
         }
     }
 }

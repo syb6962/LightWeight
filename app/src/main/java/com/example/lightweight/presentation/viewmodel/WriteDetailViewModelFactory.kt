@@ -6,12 +6,11 @@ import com.example.lightweight.data.repository.WriteDetailRepository
 import com.example.lightweight.presentation.ui.write.WriteDetailViewModel
 
 class WriteDetailViewModelFactory(
-    private val repository: WriteDetailRepository,
-    private val workout: String
+    private val repository: WriteDetailRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(WriteDetailViewModel::class.java))
-            return WriteDetailViewModel(repository, workout) as T
+            return WriteDetailViewModel(repository) as T
         throw IllegalAccessException("Unknown ViewModel Class")
     }
 }

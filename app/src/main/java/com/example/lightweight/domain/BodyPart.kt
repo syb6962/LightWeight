@@ -3,7 +3,7 @@ package com.example.lightweight.domain
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-sealed class BodyPart(val name: String) : Parcelable {
+sealed class BodyPart(private val name: String) : Parcelable {
     fun getPart() = name
 
     @Parcelize class Chest : BodyPart("Chest")

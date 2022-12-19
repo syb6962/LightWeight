@@ -5,10 +5,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.lightweight.domain.BodyPart
 
 
-/*********************
- * viewpager2 adapter *
- **********************/
-class WorkoutListTabPagerAdapter(f: Fragment) : FragmentStateAdapter(f){
+/********************************
+ * viewpager2 페이지 생성 adapter *
+ ********************************/
+class WorkoutListTabAdapter(f: Fragment) : FragmentStateAdapter(f){
     override fun getItemCount(): Int {
         return 7
     }
