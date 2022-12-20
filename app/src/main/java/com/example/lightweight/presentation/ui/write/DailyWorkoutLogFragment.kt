@@ -1,5 +1,6 @@
 package com.example.lightweight.presentation.ui.write
 
+import android.graphics.pdf.PdfDocument
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.lightweight.R
+import com.example.lightweight.data.PageState
 import com.example.lightweight.databinding.FragmentDailyWorkoutLogBinding
 
 class DailyWorkoutLogFragment : Fragment() {
@@ -35,10 +37,10 @@ class DailyWorkoutLogFragment : Fragment() {
 
         }
 
-        binding.btn.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_dailyWorkoutLogFragment_to_workoutListTabFragment
-            )
+        binding.startWorkout.setOnClickListener {
+            val action = DailyWorkoutLogFragmentDirections
+                .actionDailyWorkoutLogFragmentToWorkoutListTabFragment(PageState.DailyLog("DailyLog"))
+            findNavController().navigate(action)
         }
 
         return root

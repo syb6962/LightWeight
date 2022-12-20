@@ -13,7 +13,6 @@ class WorkoutListTabAdapter(f: Fragment) : FragmentStateAdapter(f){
         return 7
     }
 
-    // Tab의 내용 화면 만들기
     override fun createFragment(position: Int): Fragment {
         return when(position) {
             0 -> WorkoutListTabPageFragment.newInstance(BodyPart.Chest())

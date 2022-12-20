@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
+import com.example.lightweight.data.PageState
 import com.example.lightweight.databinding.FragmentWorkoutListTabBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -15,6 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class WorkoutListTabFragment : Fragment() {
     private var _binding: FragmentWorkoutListTabBinding? = null
     private val binding get() = _binding!!
+    private val args : WorkoutListTabFragmentArgs by navArgs()
     private lateinit var tabAdapter: WorkoutListTabAdapter
     private val list by lazy { listOf("가슴","등","하체", "어깨", "이두", "삼두", "복근") }
 
@@ -28,12 +31,13 @@ class WorkoutListTabFragment : Fragment() {
 
         binding.apply {
             pager.adapter = tabAdapter
-
+            PageState.curPageState = args.pageState
             // TabLayout 을 viewpager2에 연결
             TabLayoutMediator(tablayout, pager) { tab, position ->
                 tab.text = list[position]
             }.attach()
         }
+
         return binding.root
     }
 

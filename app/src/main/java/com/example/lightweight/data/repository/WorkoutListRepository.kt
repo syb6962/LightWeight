@@ -40,5 +40,4 @@ class WorkoutListRepository(private val dao: WorkoutDao) {
         val data = DailyWorkout(date = formatter, bodyPart = part.getPart())
         dao.insertDailyLog(data)
     }
-
 }

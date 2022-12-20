@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_workoutListTabFragment_to_writeDetailFragment"
             app:destination="@id/writeDetailFragment" />
+        <argument
+            android:name="pageState"
+            app:argType="com.example.lightweight.data.PageState" />
     </fragment>
     <fragment
         android:id="@+id/writeDetailFragment"

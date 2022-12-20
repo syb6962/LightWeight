@@ -1,12 +1,14 @@
 package com.example.lightweight.presentation.ui.write
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.lightweight.R
+import com.example.lightweight.data.PageState
 import com.example.lightweight.databinding.FragmentAddRoutineBinding
 
 class AddRoutineFragment : Fragment() {
@@ -22,7 +24,9 @@ class AddRoutineFragment : Fragment() {
         _binding = FragmentAddRoutineBinding.inflate(inflater, container, false)
 
         binding.addRoutine.setOnClickListener {
-            findNavController().navigate(R.id.action_addRoutineFragment_to_workoutListTabFragment)
+            val action = AddRoutineFragmentDirections
+                .actionAddRoutineFragmentToWorkoutListTabFragment(PageState.curPageState)
+            findNavController().navigate(action)
         }
 
         return binding.root

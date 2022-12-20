@@ -1,6 +1,7 @@
 package com.example.lightweight.presentation.ui.write
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.lightweight.R
 import com.example.lightweight.WorkoutApplication
+import com.example.lightweight.data.PageState
 import com.example.lightweight.databinding.FragmentWriteDetailBinding
 import com.example.lightweight.presentation.viewmodel.WriteDetailViewModelFactory
 
