@@ -9,14 +9,17 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.lightweight.WorkoutApplication
 import com.example.lightweight.data.PageState
-import com.example.lightweight.databinding.FragmentWorkoutListTabPageBinding
+import com.example.lightweight.databinding.FragmentWorkoutListTabPagerBinding
 import com.example.lightweight.domain.BodyPart
 import com.example.lightweight.presentation.viewmodel.WorkoutListViewModel
 import com.example.lightweight.presentation.viewmodel.WorkoutListViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 /***********************************************
@@ -24,8 +27,8 @@ import com.example.lightweight.presentation.viewmodel.WorkoutListViewModelFactor
  *  viewpager2의 Page 프래그먼트 *****************
  ***********************************************/
 
-class WorkoutListTabPageFragment : Fragment(), WorkoutListAdapter.OnItemClickListener {
-    private var _binding : FragmentWorkoutListTabPageBinding? = null
+class WorkoutListTabPagerFragment : Fragment(), WorkoutListAdapter.OnItemClickListener {
+    private var _binding : FragmentWorkoutListTabPagerBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: WorkoutListAdapter
     private lateinit var part: BodyPart
@@ -47,11 +50,11 @@ class WorkoutListTabPageFragment : Fragment(), WorkoutListAdapter.OnItemClickLis
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentWorkoutListTabPageBinding.inflate(inflater, container, false)
+        _binding = FragmentWorkoutListTabPagerBinding.inflate(inflater, container, false)
 
         binding.apply {
             adapter = WorkoutListAdapter(::setResult)
-            adapter.setOnItemClickListener(this@WorkoutListTabPageFragment)
+            adapter.setOnItemClickListener(this@WorkoutListTabPagerFragment)
             rv.adapter = adapter
         }
 
@@ -69,7 +72,7 @@ class WorkoutListTabPageFragment : Fragment(), WorkoutListAdapter.OnItemClickLis
     companion object {
         @JvmStatic
         fun newInstance(part: BodyPart) =
-            WorkoutListTabPageFragment().apply {
+            WorkoutListTabPagerFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable("part", part)
                 }
@@ -88,7 +91,19 @@ class WorkoutListTabPageFragment : Fragment(), WorkoutListAdapter.OnItemClickLis
     // 운동 리스트 클릭 이벤트
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onItemClick(workout: String) {
-        vm.createDailyLog(part)
+        viewLifecycleOwner.lifecycleScope.launch {
+            when(PageState.curPageState) {
+                is PageState.startWorkout -> {
+                    val id = vm.createDailyLog(part)
+                    val action = WorkoutListTabFragmentDirections
+                        .actionWorkoutListTabFragmentToWriteDetailFragment(id, "QWe")
+                    findNavController().navigate(action)
+                }
+                is PageState.addWorkout ->
+                    Log.i("PageState", PageState.curPageState.getState())
+                is PageState.editWorkout -> Log.i("PageState", "${PageState.curPageState}")
+            }
+        }
     }
 
     override fun onDestroyView() {

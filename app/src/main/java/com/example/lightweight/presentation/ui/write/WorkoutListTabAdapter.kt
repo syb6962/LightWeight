@@ -15,13 +15,13 @@ class WorkoutListTabAdapter(f: Fragment) : FragmentStateAdapter(f){
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
-            0 -> WorkoutListTabPageFragment.newInstance(BodyPart.Chest())
-            1 -> WorkoutListTabPageFragment.newInstance(BodyPart.Back())
-            2 -> WorkoutListTabPageFragment.newInstance(BodyPart.Leg())
-            3 -> WorkoutListTabPageFragment.newInstance(BodyPart.Shoulder())
-            4 -> WorkoutListTabPageFragment.newInstance(BodyPart.Biceps())
-            5 -> WorkoutListTabPageFragment.newInstance(BodyPart.Triceps())
-            else -> WorkoutListTabPageFragment.newInstance(BodyPart.Abs()) // 7번째
+            0 -> WorkoutListTabPagerFragment.newInstance(BodyPart.Chest())
+            1 -> WorkoutListTabPagerFragment.newInstance(BodyPart.Back())
+            2 -> WorkoutListTabPagerFragment.newInstance(BodyPart.Leg())
+            3 -> WorkoutListTabPagerFragment.newInstance(BodyPart.Shoulder())
+            4 -> WorkoutListTabPagerFragment.newInstance(BodyPart.Biceps())
+            5 -> WorkoutListTabPagerFragment.newInstance(BodyPart.Triceps())
+            else -> WorkoutListTabPagerFragment.newInstance(BodyPart.Abs()) // 7번째
         }
     }
 }

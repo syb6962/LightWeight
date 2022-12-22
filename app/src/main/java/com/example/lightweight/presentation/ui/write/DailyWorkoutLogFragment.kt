@@ -1,6 +1,5 @@
 package com.example.lightweight.presentation.ui.write
 
-import android.graphics.pdf.PdfDocument
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,8 +37,15 @@ class DailyWorkoutLogFragment : Fragment() {
         }
 
         binding.startWorkout.setOnClickListener {
+            PageState.curPageState = PageState.startWorkout("startWorkout")
             val action = DailyWorkoutLogFragmentDirections
-                .actionDailyWorkoutLogFragmentToWorkoutListTabFragment(PageState.DailyLog("DailyLog"))
+                .actionDailyWorkoutLogFragmentToWorkoutListTabFragment(PageState.startWorkout("DailyLog"))
+            findNavController().navigate(action)
+        }
+
+        binding.editWorkout.setOnClickListener {
+            val action = DailyWorkoutLogFragmentDirections
+                .actionDailyWorkoutLogFragmentToWorkoutListTabFragment(PageState.startWorkout("DailyLog"))
             findNavController().navigate(action)
         }
 

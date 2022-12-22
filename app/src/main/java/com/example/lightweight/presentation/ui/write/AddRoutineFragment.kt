@@ -24,6 +24,7 @@ class AddRoutineFragment : Fragment() {
         _binding = FragmentAddRoutineBinding.inflate(inflater, container, false)
 
         binding.addRoutine.setOnClickListener {
+//            PageState.curPageState = PageState.addWorkout()
             val action = AddRoutineFragmentDirections
                 .actionAddRoutineFragmentToWorkoutListTabFragment(PageState.curPageState)
             findNavController().navigate(action)

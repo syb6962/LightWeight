@@ -1,11 +1,9 @@
 package com.example.lightweight.data.repository
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.lightweight.data.db.dao.WorkoutDao
 import com.example.lightweight.data.db.entity.DailyWorkout
-import com.example.lightweight.data.db.entity.WorkoutList
 import com.example.lightweight.domain.BodyPart
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -14,6 +12,8 @@ class WorkoutListRepository(private val dao: WorkoutDao) {
 
    fun getWorkoutList(part: BodyPart): List<String> {
         return when(part) {
+            // id는 DB WorkoutList에 저장되어있는 bodyPartId에 대응됨
+            // 가슴 ~ 복근까지 각 0~6에 대응
             is BodyPart.Chest -> getList(0)
             is BodyPart.Back -> getList(1)
             is BodyPart.Leg -> getList(2)
@@ -26,11 +26,12 @@ class WorkoutListRepository(private val dao: WorkoutDao) {
 
     private fun getList(id: Long) : List<String> {
         val list = dao.getWorkoutList()
-        return list.filter { it.bodyPartId == id }.map { it.workout }
+        list.map {  }
+        return list.filter { it.bodyPartId == id }.map { it.workout } // WorkoutList에서 운동만 추출
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    suspend fun createDailyLog(part: BodyPart) {
+    suspend fun createDailyLog(part: BodyPart) : Long {
         val date = LocalDate.now()
         val formatter =
             DateTimeFormatter
@@ -38,6 +39,6 @@ class WorkoutListRepository(private val dao: WorkoutDao) {
                 .format(date)
 
         val data = DailyWorkout(date = formatter, bodyPart = part.getPart())
-        dao.insertDailyLog(data)
+        return dao.insertDailyLog(data)
     }
 }

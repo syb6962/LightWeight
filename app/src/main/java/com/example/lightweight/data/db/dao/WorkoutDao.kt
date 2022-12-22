@@ -18,7 +18,7 @@ interface WorkoutDao {
     fun getWorkoutList() : List<WorkoutList>
 
     @Insert
-    suspend fun insertDailyLog(dailyWorkout: DailyWorkout)
+    suspend fun insertDailyLog(dailyWorkout: DailyWorkout) : Long
 
 //    @Query("SELECT * FROM Workout")
 //    @Transaction

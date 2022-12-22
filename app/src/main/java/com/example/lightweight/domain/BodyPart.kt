@@ -1,6 +1,7 @@
 package com.example.lightweight.domain
 
 import android.os.Parcelable
+import androidx.room.Entity
 import kotlinx.parcelize.Parcelize
 
 sealed class BodyPart(private val name: String) : Parcelable {

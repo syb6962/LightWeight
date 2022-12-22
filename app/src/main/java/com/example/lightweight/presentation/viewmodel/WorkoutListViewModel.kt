@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.lightweight.data.repository.WorkoutListRepository
 import com.example.lightweight.domain.BodyPart
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class WorkoutListViewModel(
@@ -26,9 +27,7 @@ class WorkoutListViewModel(
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun createDailyLog(part: BodyPart) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.createDailyLog(part)
-        }
+    suspend fun createDailyLog(part: BodyPart) : Long {
+        return repository.createDailyLog(part)
     }
 }
