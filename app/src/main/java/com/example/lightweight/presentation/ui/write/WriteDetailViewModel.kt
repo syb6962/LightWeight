@@ -18,10 +18,15 @@ class WriteDetailViewModel(
     private var _items: MutableStateFlow<List<WorkoutSetInfo>> = MutableStateFlow(listOf())
     val items = _items.asStateFlow()
 
-    fun add() {
+    fun addSet() {
         viewModelScope.launch {
             _items.value = repository.add()
+        }
+    }
 
+    fun delete() {
+        viewModelScope.launch {
+//            _items.value = repository.add()
         }
     }
 }

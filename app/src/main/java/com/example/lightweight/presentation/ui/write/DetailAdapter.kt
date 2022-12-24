@@ -2,14 +2,12 @@ package com.example.lightweight.presentation.ui.write
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lightweight.data.db.entity.WorkoutSetInfo
 import com.example.lightweight.databinding.ItemWorkoutDetailBinding
-import com.example.lightweight.setTextIfDifferent
 
 class DetailAdapter : ListAdapter<WorkoutSetInfo, DetailAdapter.ViewHolder >(DetailDiffUtil()) {
 
@@ -23,8 +21,6 @@ class DetailAdapter : ListAdapter<WorkoutSetInfo, DetailAdapter.ViewHolder >(Det
         )
     }
 
-    // 스크롤시 EditText의 값이 랜덤하게 바뀌는 현상 해결 방법
-    // 하지만 이 방법은 퍼포먼스(성능저하) 측면에서 좋지 않다는 답변이 있음
     /***********************************************
      * https://stackoverflow.com/a/64396998/14415521 *
      ***********************************************/
@@ -38,21 +34,34 @@ class DetailAdapter : ListAdapter<WorkoutSetInfo, DetailAdapter.ViewHolder >(Det
     }
 
     inner class ViewHolder(val binding: ItemWorkoutDetailBinding) : RecyclerView.ViewHolder(binding.root) {
+        private var weightTextWatcher: TextWatcher? = null
+        private var repTextWatcher: TextWatcher? = null
 
         fun bind(item: WorkoutSetInfo) {
-            item.weight = binding.weight.text.toString()
-            item.reps = binding.rep.text.toString()
-            Log.i("무게확인", "Weight: ${item.weight}, Rep: ${item.reps}")
-//            binding.weight.also {
-//                it.setTextIfDifferent(item.weight)
-////                it.setText(item.weight)
-////                it.addTextChangedListener(weightTextWatcher)
-//            }
-//            binding.rep.also {
-////                it.setText(item.reps)
-//                it.setTextIfDifferent(item.reps)
-////                it.addTextChangedListener(repTextWatcher)
-//            }
+            binding.set.text = item.set.toString() // as로 타입캐스팅이 되어야 다음부터 item.--이 가능해짐
+            binding.weight.removeTextChangedListener(weightTextWatcher)
+            binding.unit.text = item.unit.name
+            binding.rep.removeTextChangedListener(repTextWatcher)
+
+            weightTextWatcher = object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+                override fun afterTextChanged(w: Editable?) {
+                    item.weight = w.toString()
+                }
+            }
+
+            repTextWatcher = object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
+                override fun afterTextChanged(r: Editable?) {
+                    if(!binding.rep.hasFocus())
+                        return
+                    item.reps = r.toString()
+                }
+            }
         }
     }
 }

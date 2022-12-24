@@ -14,8 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LightWeight"
         tools:targetApi="31">
+        <!-- windowSoft속성 adjustPan 또는 adjustResize 써야할듯  -->
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
