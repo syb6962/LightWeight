@@ -31,9 +31,17 @@
         android:name="com.example.lightweight.presentation.ui.write.AddRoutineFragment"
         android:label="fragment_add_routine"
         tools:layout="@layout/fragment_add_routine" >
+        <!-- 루틴 추가 -->
         <action
             android:id="@+id/action_addRoutineFragment_to_workoutListTabFragment"
             app:destination="@id/workoutListTabFragment" />
+        <!-- 뒤로가기 -->
+        <action
+            android:id="@+id/action_backPress_addRoutine_to_dailyWorkout"
+            app:destination="@id/dailyWorkoutLogFragment"
+            app:popUpTo="@id/dailyWorkoutLogFragment"
+            app:popUpToInclusive="true"/>
+
     </fragment>
     <fragment
         android:id="@+id/workoutListTabFragment"
@@ -42,7 +50,9 @@
         tools:layout="@layout/fragment_workout_list_tab" >
         <action
             android:id="@+id/action_workoutListTabFragment_to_writeDetailFragment"
-            app:destination="@id/writeDetailFragment" />
+            app:destination="@id/writeDetailFragment"
+            app:popUpTo="@id/workoutListTabFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="pageState"
             app:argType="com.example.lightweight.data.PageState" />
@@ -60,10 +70,12 @@
         <argument
             android:name="id"
             app:argType="long" />
+        <!-- 상세 작성 완료시 -->
         <action
             android:id="@+id/action_writeDetailFragment_to_addRoutineFragment"
-            app:destination="@id/addRoutineFragment"
-            app:popUpTo="@id/addRoutineFragment"
-            app:popUpToInclusive="true"/>
+            app:destination="@id/addRoutineFragment" />
+        <!-- 뒤로가기 실행시       -->
+        <action android:id="@+id/action_backPress_writeDetail_to_addRoutine"
+            app:destination="@id/addRoutineFragment" />
     </fragment>
 </navigation>

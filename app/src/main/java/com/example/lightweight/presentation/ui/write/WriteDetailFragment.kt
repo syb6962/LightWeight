@@ -38,11 +38,9 @@ class WriteDetailFragment :  Fragment() {
         // 뒤로가기
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().navigate(R.id.action_writeDetailFragment_to_addRoutineFragment)
-//                findNavController().let {
-//                    it.navigate(R.id.addRoutineFragment)
-//                    it.popBackStack()
-//                }
+                findNavController().let {
+                    it.navigate(R.id.action_backPress_writeDetail_to_addRoutine)
+                }
             }
         }
         activity?.onBackPressedDispatcher!!.addCallback(this, callback)
@@ -59,11 +57,16 @@ class WriteDetailFragment :  Fragment() {
             rv.itemAnimator = null
             
             // 세트 추가
-            add.setOnClickListener {
+            addSet.setOnClickListener {
                 viewModel.addSet()
 //                findNavController().navigate(R.id.action_writeDetailFragment_to_addRoutineFragment)
             }
+            // 작성 완료
+            complete.setOnClickListener {
+                findNavController().navigate(R.id.action_writeDetailFragment_to_addRoutineFragment)
+            }
         }
+
 
 
         return binding.root
