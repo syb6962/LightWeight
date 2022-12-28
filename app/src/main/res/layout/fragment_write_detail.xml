@@ -134,7 +134,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="16dp">
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/delete"
+                    android:id="@+id/delete_set"
                     android:layout_height="wrap_content"
                     style="@style/AddDeleteButtonStyle"
                     android:text="@string/delete_set"

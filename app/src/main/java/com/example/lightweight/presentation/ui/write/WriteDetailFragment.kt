@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navOptions
@@ -39,6 +41,7 @@ class WriteDetailFragment :  Fragment() {
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 findNavController().let {
+                    viewModel.clearList()
                     it.navigate(R.id.action_backPress_writeDetail_to_addRoutine)
                 }
             }
@@ -51,18 +54,24 @@ class WriteDetailFragment :  Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentWriteDetailBinding.inflate(inflater, container, false)
+
         binding.apply {
             adapter = DetailAdapter()
             rv.adapter = adapter
             rv.itemAnimator = null
-            
+
             // 세트 추가
             addSet.setOnClickListener {
                 viewModel.addSet()
 //                findNavController().navigate(R.id.action_writeDetailFragment_to_addRoutineFragment)
             }
+
+            deleteSet.setOnClickListener {
+                viewModel.deleteSet()
+            }
             // 작성 완료
             complete.setOnClickListener {
+                viewModel.clearList()
                 findNavController().navigate(R.id.action_writeDetailFragment_to_addRoutineFragment)
             }
         }
@@ -75,9 +84,10 @@ class WriteDetailFragment :  Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.items.collect { list ->
-                binding.rv.setItemViewCacheSize(list.size)
-                adapter.submitList(list)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.items.collect { list ->
+                    adapter.submitList(list)
+                }
             }
         }
     }
