@@ -19,8 +19,8 @@ data class WorkoutSetInfo(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val set: Int,
-    var weight: String = "",
-    var reps: String = "",
+    var weight: String = "0",
+    var reps: String = "0",
     var unit: WorkoutUnit = WorkoutUnit.kg,
     val parentWorkoutId: Long = 0
 )

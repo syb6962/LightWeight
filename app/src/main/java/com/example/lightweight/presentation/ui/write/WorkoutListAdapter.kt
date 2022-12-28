@@ -52,18 +52,22 @@ class WorkoutListAdapter(val setVal : (String) -> Unit) : RecyclerView.Adapter<W
 
 
         init {
-            binding.workout.setOnClickListener { view ->
-
+            binding.apply {
+                workout.setOnClickListener {
+                    val workout = workout.text.toString()
+                    mListener.onItemClick(workout)
+                }
+            }
 //                val page = PageState.AddRoutine()
 //                setVal(workout)
-                mListener.onItemClick("workout")
+
 
 //                val action = WorkoutListTabFragmentDirections
 //                    .actionWorkoutListTabFragmentToWriteDetailFragment(workout)
 //                view.findNavController().navigate(action)
 
 //                Navigation.findNavController(view).navigate(R.id.action_workoutListTabFragment_to_writeRoutineFragment22)
-            }
+
         }
 
         fun bind(item: String) {

@@ -2,12 +2,15 @@
     <string name="app_name">LightWeight</string>
     <string name="hint_memo">MEMO</string>
     <string name="add_routine">추 가</string>
+    <string name="unit_set">set</string>
     <string name="unit_kg">kg</string>
     <string name="unit_lbs">lbs</string>
     <string name="unit_reps">회</string>
     <string name="add_set">세트 추가</string>
     <string name="delete_set">세트 삭제</string>
     <string name="expand_btn">세트 펼치기</string>
+    <string name="hint_kg">0</string>
+    <string name="hint_reps">0</string>
 
     <!--    Workout List    -->
     <string-array name="back_workout_list">

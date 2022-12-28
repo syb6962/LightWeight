@@ -96,7 +96,7 @@ class WorkoutListTabPagerFragment : Fragment(), WorkoutListAdapter.OnItemClickLi
                 is PageState.startWorkout -> {
                     val id = vm.createDailyLog(part)
                     val action = WorkoutListTabFragmentDirections
-                        .actionWorkoutListTabFragmentToWriteDetailFragment(id, "QWe")
+                        .actionWorkoutListTabFragmentToWriteDetailFragment(id, workout)
                     findNavController().navigate(action)
                 }
                 is PageState.addWorkout ->
