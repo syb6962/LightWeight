@@ -35,10 +35,6 @@ class WriteDetailViewModel(
         }
     }
 
-    fun clearList() {
-        repository.clearList()
-    }
-
     fun complete(title: String, memo: String) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.complete(title, memo)

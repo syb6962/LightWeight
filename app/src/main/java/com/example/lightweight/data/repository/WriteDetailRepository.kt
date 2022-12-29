@@ -11,6 +11,7 @@ class WriteDetailRepository(val dao: WorkoutDao) {
                 get() = setInfoList.toList()
 
     fun changeUnit(unit: WorkoutUnit) {
+        //TODO: 화면이 업데이트 되지않는것을 확인
         updatedList = setInfoList.map { setInfo ->
             setInfo.copy(unit = unit)
         }
@@ -31,14 +32,8 @@ class WriteDetailRepository(val dao: WorkoutDao) {
         }
     }
 
+    //TODO: 필요한지 의문
     fun getList() : List<WorkoutSetInfo> = updatedList
-
-    // Application 클래스가 싱글톤이기때문에
-    // 리스트가 유지되는 현상을 막기위한 초기화
-    fun clearList() {
-        setInfoList.clear()
-        setInfoList.add(WorkoutSetInfo(set = 1))
-    }
 
     fun complete(title: String, memo: String) {
         val workout = Workout(title = title, memo = memo)
@@ -50,6 +45,5 @@ class WriteDetailRepository(val dao: WorkoutDao) {
             setInfo.copy(parentWorkoutId = workoutId)
         }
         dao.insertSetInfoList(newWorkoutSetInfoList)
-        clearList()
     }
 }

@@ -43,7 +43,7 @@ class WriteDetailFragment :  Fragment() {
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 findNavController().let {
-                    viewModel.clearList()
+//                    viewModel.clearList()
                     it.navigate(R.id.action_backPress_writeDetail_to_addRoutine)
                 }
             }
@@ -63,7 +63,7 @@ class WriteDetailFragment :  Fragment() {
         _binding = FragmentWriteDetailBinding.inflate(inflater, container, false)
 
         binding.apply {
-            workoutTitle.text = args.workout
+            workoutTitle.text = mWorkoutTitle
             adapter = DetailAdapter()
             rv.adapter = adapter
             rv.itemAnimator = null
