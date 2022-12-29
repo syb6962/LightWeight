@@ -35,9 +35,9 @@ class WriteDetailViewModel(
         }
     }
 
-    fun complete(title: String, memo: String) {
+    fun complete(title: String, memo: String, completedList: List<WorkoutSetInfo>) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.complete(title, memo)
+            repository.complete(title, memo, completedList)
         }
     }
 }

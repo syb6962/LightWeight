@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +54,7 @@ class WriteDetailFragment :  Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mWorkoutTitle = args.workout.toString()
+        mWorkoutTitle = args.workout.toString() // 운동 이름
     }
 
     override fun onCreateView(
@@ -71,6 +72,7 @@ class WriteDetailFragment :  Fragment() {
             // 세트 추가
             addSet.setOnClickListener {
                 viewModel.addSet()
+                Log.i("확인", WorkoutUnit.kg.name)
 //                findNavController().navigate(R.id.action_writeDetailFragment_to_addRoutineFragment)
             }
 
@@ -109,12 +111,11 @@ class WriteDetailFragment :  Fragment() {
 
             // 작성 완료
             complete.setOnClickListener {
-                viewModel.complete(mWorkoutTitle, mMemo)
+                val resultList = adapter.getCompletedListForDB()
+                viewModel.complete(mWorkoutTitle, mMemo, resultList)
                 findNavController().navigate(R.id.action_writeDetailFragment_to_addRoutineFragment)
             }
         }
-
-
 
         return binding.root
     }
