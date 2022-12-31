@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 sealed class PageState(private val e: String) : Parcelable {
     fun getState() = e
+
     @Parcelize class startWorkout(val name: String) : PageState(name)
     @Parcelize class editWorkout : PageState("")
     @Parcelize class addWorkout: PageState("addWorkout")

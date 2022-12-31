@@ -1,6 +1,9 @@
 package com.example.lightweight.data.repository
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.lightweight.data.WorkoutUnit
+import com.example.lightweight.data.db.UnitState
 import com.example.lightweight.data.db.dao.WorkoutDao
 import com.example.lightweight.data.db.entity.Workout
 import com.example.lightweight.data.db.entity.WorkoutSetInfo
@@ -10,23 +13,24 @@ class WriteDetailRepository(val dao: WorkoutDao) {
     private var updatedList = listOf<WorkoutSetInfo>() //TODO: 질문하기. 그냥 updateList =  setInfoList.toList()와 결과가 다르다.
                 get() = setInfoList.toList()
 
-    fun changeUnit(unit: WorkoutUnit) {
-        updatedList = setInfoList.map { setInfo ->
-            setInfo.copy(unit = unit)
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun changeUnit(unit: WorkoutUnit)  {
+        // setInfList의 모든 원소를 바꾸는데
+        // copy를 사용해서 unit을 바꾸고 각 원소에 새로운 주소값을 할당함
+        setInfoList.replaceAll { it ->
+            it.copy(unit= unit)
         }
     }
 
     fun add() {
         val item = WorkoutSetInfo(set = setInfoList.size + 1)
         setInfoList.add(item)
-        updatedList = setInfoList.toList()
     }
 
     fun delete() {
         if(setInfoList.size != 1) {
             setInfoList.let { list ->
                 list.removeLast()
-                updatedList = list.toList()
             }
         }
     }
@@ -43,6 +47,5 @@ class WriteDetailRepository(val dao: WorkoutDao) {
         dao.insertSetInfoList(completedList)
     }
 
-    //TODO: 필요한지 의문, 바로반환하면 안될까?
-    fun getList() : List<WorkoutSetInfo> = updatedList
+    fun getList() = setInfoList.toList()
 }

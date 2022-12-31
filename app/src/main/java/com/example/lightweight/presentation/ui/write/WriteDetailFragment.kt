@@ -1,6 +1,7 @@
 package com.example.lightweight.presentation.ui.write
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -19,6 +21,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.lightweight.R
 import com.example.lightweight.WorkoutApplication
 import com.example.lightweight.data.WorkoutUnit
+import com.example.lightweight.data.db.UnitState
 import com.example.lightweight.databinding.FragmentWriteDetailBinding
 import com.example.lightweight.presentation.viewmodel.WriteDetailViewModelFactory
 import kotlinx.coroutines.launch
@@ -83,11 +86,8 @@ class WriteDetailFragment :  Fragment() {
 
             // 단위 변경
             unitToggle.addOnButtonCheckedListener { _, checkedId, isChecked ->
-                if(isChecked) {
-                    when(checkedId) {
-                        R.id.kg -> viewModel.changeUnit(WorkoutUnit.kg) // TODO: resource로 고치기. R.~어쩌고하는거
-                        R.id.lb -> viewModel.changeUnit(WorkoutUnit.lbs)
-                    }
+                if(isChecked && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    changeUnitState(checkedId)
                 }
             }
 
@@ -118,6 +118,18 @@ class WriteDetailFragment :  Fragment() {
         }
 
         return binding.root
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun changeUnitState(checkedId: Int) {
+        when(checkedId) {
+            R.id.kg -> {
+                viewModel.changeUnit(WorkoutUnit.kg)
+            }
+            R.id.lb -> {
+                viewModel.changeUnit(WorkoutUnit.lbs)
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

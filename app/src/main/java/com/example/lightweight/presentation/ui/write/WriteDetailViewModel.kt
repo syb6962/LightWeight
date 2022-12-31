@@ -1,5 +1,7 @@
 package com.example.lightweight.presentation.ui.write
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lightweight.data.WorkoutUnit
@@ -17,6 +19,7 @@ class WriteDetailViewModel(
     private var _items: MutableStateFlow<List<WorkoutSetInfo>> = MutableStateFlow(repository.getList())
     val items = _items.asStateFlow()
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun changeUnit(unit: WorkoutUnit) {
         repository.changeUnit(unit)
         _items.value = repository.getList()
