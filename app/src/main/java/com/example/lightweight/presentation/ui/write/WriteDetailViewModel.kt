@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lightweight.data.WorkoutUnit
+import com.example.lightweight.data.db.UnitState
 import com.example.lightweight.data.db.entity.WorkoutSetInfo
 import com.example.lightweight.data.repository.WriteDetailRepository
 import kotlinx.coroutines.Dispatchers
@@ -20,14 +21,14 @@ class WriteDetailViewModel(
     val items = _items.asStateFlow()
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun changeUnit(unit: WorkoutUnit) {
+    fun changeUnit(unit: UnitState) {
         repository.changeUnit(unit)
         _items.value = repository.getList()
     }
 
-    fun addSet() {
+    fun addSet(unit: UnitState) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.add()
+            repository.add(unit)
             _items.value = repository.getList()
         }
     }

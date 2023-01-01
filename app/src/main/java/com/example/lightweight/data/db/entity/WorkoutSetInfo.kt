@@ -3,6 +3,7 @@ package com.example.lightweight.data.db.entity
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.lightweight.R
 import com.example.lightweight.data.WorkoutUnit
 
 @Entity( //TODO: foreignKeys의 Annotation 있으나 마나한것같다..(차이가 없음)
@@ -21,6 +22,6 @@ data class WorkoutSetInfo(
     val set: Int,
     var weight: String = "0",
     var reps: String = "0",
-    var unit: WorkoutUnit = WorkoutUnit.kg,
+    var unit: String = "kg",
     val parentWorkoutId: Long = 0
 )

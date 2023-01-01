@@ -1,6 +1,6 @@
 package com.example.lightweight.data.db
 
-sealed class UnitState(val name: String) {
+sealed class UnitState(private val name: String) {
 
     fun getUnitName() = name
 

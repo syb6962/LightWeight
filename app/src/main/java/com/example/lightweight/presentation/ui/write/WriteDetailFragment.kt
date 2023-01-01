@@ -40,6 +40,7 @@ class WriteDetailFragment :  Fragment() {
 
     private lateinit var mWorkoutTitle: String
     private var mMemo: String = ""
+    private var mUnitState: UnitState = UnitState.UnitKg("kg") // add() 할때 필요
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -74,7 +75,7 @@ class WriteDetailFragment :  Fragment() {
 
             // 세트 추가
             addSet.setOnClickListener {
-                viewModel.addSet()
+                viewModel.addSet(mUnitState)
                 Log.i("확인", WorkoutUnit.kg.name)
 //                findNavController().navigate(R.id.action_writeDetailFragment_to_addRoutineFragment)
             }
@@ -123,13 +124,10 @@ class WriteDetailFragment :  Fragment() {
     @RequiresApi(Build.VERSION_CODES.N)
     private fun changeUnitState(checkedId: Int) {
         when(checkedId) {
-            R.id.kg -> {
-                viewModel.changeUnit(WorkoutUnit.kg)
-            }
-            R.id.lb -> {
-                viewModel.changeUnit(WorkoutUnit.lbs)
-            }
+            R.id.kg -> mUnitState = UnitState.UnitKg(getString(R.string.unit_kg))
+            R.id.lb -> mUnitState = UnitState.UnitLbs(getString(R.string.unit_lbs))
         }
+        viewModel.changeUnit(mUnitState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

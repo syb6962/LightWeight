@@ -62,7 +62,7 @@ class DetailAdapter : ListAdapter<WorkoutSetInfo, DetailAdapter.ViewHolder >(Det
 
             binding.apply {
                 set.text = item.set.toString()
-                unit.text = item.unit.name
+                unit.text = item.unit
                 weight.addTextChangedListener(weightTextWatcher)
                 rep.addTextChangedListener(repTextWatcher)
             }

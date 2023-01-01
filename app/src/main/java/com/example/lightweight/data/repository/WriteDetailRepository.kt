@@ -14,17 +14,42 @@ class WriteDetailRepository(val dao: WorkoutDao) {
                 get() = setInfoList.toList()
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun changeUnit(unit: WorkoutUnit)  {
+    fun changeUnit(unit: UnitState)  {
         // setInfList의 모든 원소를 바꾸는데
         // copy를 사용해서 unit을 바꾸고 각 원소에 새로운 주소값을 할당함
-        setInfoList.replaceAll { it ->
-            it.copy(unit= unit)
+        when(unit) {
+            is UnitState.UnitKg -> setInfoList.replaceAll { it ->
+                it.copy(unit= "kg")
+            }
+            is UnitState.UnitLbs -> setInfoList.replaceAll { it ->
+                it.copy(unit= "lbs")
+            }
         }
+
     }
 
-    fun add() {
-        val item = WorkoutSetInfo(set = setInfoList.size + 1)
+    fun add(unit: UnitState) {
+        val item = WorkoutSetInfo(
+            set = setInfoList.size + 1,
+            unit = unit.getUnitName()
+        )
         setInfoList.add(item)
+//        when(unit) {
+//            is UnitState.UnitKg -> {
+//                val item = WorkoutSetInfo(
+//                    set = setInfoList.size + 1,
+//                    unit = unit.getUnitName()
+//                )
+//                setInfoList.add(item)
+//            }
+//            is UnitState.UnitLbs -> {
+//                val item = WorkoutSetInfo(
+//                    set = setInfoList.size + 1,
+//                    unit = unit.getUnitName()
+//                )
+//                setInfoList.add(item)
+//            }
+//        }
     }
 
     fun delete() {
