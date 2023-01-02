@@ -34,22 +34,6 @@ class WriteDetailRepository(val dao: WorkoutDao) {
             unit = unit.getUnitName()
         )
         setInfoList.add(item)
-//        when(unit) {
-//            is UnitState.UnitKg -> {
-//                val item = WorkoutSetInfo(
-//                    set = setInfoList.size + 1,
-//                    unit = unit.getUnitName()
-//                )
-//                setInfoList.add(item)
-//            }
-//            is UnitState.UnitLbs -> {
-//                val item = WorkoutSetInfo(
-//                    set = setInfoList.size + 1,
-//                    unit = unit.getUnitName()
-//                )
-//                setInfoList.add(item)
-//            }
-//        }
     }
 
     fun delete() {
@@ -60,8 +44,8 @@ class WriteDetailRepository(val dao: WorkoutDao) {
         }
     }
 
-    fun complete(title: String, memo: String, filledDataList: List<WorkoutSetInfo>) {
-        val workout = Workout(title = title, memo = memo)
+    fun complete(title: String, memo: String, filledDataList: List<WorkoutSetInfo>, dailyId: Long) {
+        val workout = Workout(title = title, memo = memo, parentDailyId = dailyId)
 
         // Workout 삽입 및 삽입된 Workout의 ID 반환
         // 반환된 ID를 기반으로 DB에서 Workout과 WorkoutList는 1:N 기반으로 저장됨

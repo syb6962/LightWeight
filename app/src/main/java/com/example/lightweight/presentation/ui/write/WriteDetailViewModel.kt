@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.lightweight.data.WorkoutUnit
 import com.example.lightweight.data.db.UnitState
 import com.example.lightweight.data.db.entity.WorkoutSetInfo
 import com.example.lightweight.data.repository.WriteDetailRepository
@@ -39,9 +38,9 @@ class WriteDetailViewModel(
         }
     }
 
-    fun complete(title: String, memo: String, completedList: List<WorkoutSetInfo>) {
+    fun complete(title: String, memo: String, completedList: List<WorkoutSetInfo>, dailyId: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.complete(title, memo, completedList)
+            repository.complete(title, memo, completedList, dailyId)
         }
     }
 }

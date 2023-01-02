@@ -38,9 +38,10 @@ class WriteDetailFragment :  Fragment() {
         )
     }
 
-    private lateinit var mWorkoutTitle: String
-    private var mMemo: String = ""
+    private lateinit var mWorkoutTitle: String // DB에 저장될 운동 이름
+    private var mMemo: String = "" // DB에 저장될 메모 내용
     private var mUnitState: UnitState = UnitState.UnitKg("kg") // add() 할때 필요
+    private var mDailyId: Long = 0
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -59,6 +60,7 @@ class WriteDetailFragment :  Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mWorkoutTitle = args.workout.toString() // 운동 이름
+        mDailyId = args.id // Daily Id
     }
 
     override fun onCreateView(
@@ -113,7 +115,7 @@ class WriteDetailFragment :  Fragment() {
             // 작성 완료
             complete.setOnClickListener {
                 val resultList = adapter.getCompletedListForDB()
-                viewModel.complete(mWorkoutTitle, mMemo, resultList)
+                viewModel.complete(mWorkoutTitle, mMemo, resultList, mDailyId)
                 findNavController().navigate(R.id.action_writeDetailFragment_to_addRoutineFragment)
             }
         }

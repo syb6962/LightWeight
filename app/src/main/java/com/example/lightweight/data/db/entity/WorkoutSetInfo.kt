@@ -6,13 +6,13 @@ import androidx.room.PrimaryKey
 import com.example.lightweight.R
 import com.example.lightweight.data.WorkoutUnit
 
-@Entity( //TODO: foreignKeys의 Annotation 있으나 마나한것같다..(차이가 없음)
+@Entity(
     foreignKeys = [
         ForeignKey(
             entity = Workout::class,
-            parentColumns = arrayOf("workoutId"), // FK로 가져오는 Column의 이름
-            childColumns = arrayOf("parentWorkoutId"), // FK로 받을 Column의 이름
-            onDelete = ForeignKey.CASCADE // 부모가 삭제될때 자식도 전부삭제 옵션
+            parentColumns = arrayOf("workoutId"),
+            childColumns = arrayOf("parentWorkoutId"),
+            onDelete = ForeignKey.CASCADE
         )
     ]
 )

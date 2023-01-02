@@ -12,7 +12,7 @@ class WorkoutListRepository(private val dao: WorkoutDao) {
 
    fun getWorkoutList(part: BodyPart): List<String> {
         return when(part) {
-            // id는 DB WorkoutList에 저장되어있는 bodyPartId에 대응됨
+            // getList()의 파라미터인 id는 DB WorkoutList에 저장되어있는 bodyPartId에 대응됨
             // 가슴 ~ 복근까지 각 0~6에 대응
             is BodyPart.Chest -> getList(0)
             is BodyPart.Back -> getList(1)
@@ -26,7 +26,6 @@ class WorkoutListRepository(private val dao: WorkoutDao) {
 
     private fun getList(id: Long) : List<String> {
         val list = dao.getWorkoutList()
-        list.map {  }
         return list.filter { it.bodyPartId == id }.map { it.workout } // WorkoutList에서 운동만 추출
     }
 
@@ -39,6 +38,6 @@ class WorkoutListRepository(private val dao: WorkoutDao) {
                 .format(date)
 
         val data = DailyWorkout(date = formatter, bodyPart = part.getPart())
-        return dao.insertDailyLog(data)
+        return dao.insertDailyLog(data) // 해당 DailyLog의 Id 리턴
     }
 }
